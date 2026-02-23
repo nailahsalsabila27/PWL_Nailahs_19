@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/hello', function () {
-   return 'Hello World';
-});
+// Route::get('/hello', function () {
+//    return 'Hello World';
+// });
+
+Route::get('/hello', [App\Http\Controllers\WelcomeController::class, 'hello']);
 
 Route::get('/world', function () {
    return 'World';
@@ -38,3 +40,17 @@ Route::get('/user/{name?}', function ($name='John') {
 return 'Nama saya '.$name;
 });
 
+use App\Http\Controllers\PageController;
+
+Route::get('/', [PageController::class, 'index']);
+Route::get('/about', [PageController::class, 'about']);
+Route::get('/articles/{id}', [PageController::class, 'articles']);
+
+use App\Http\Controllers\HomeController;
+Route::get('/', HomeController::class);
+
+use App\Http\Controllers\AboutController;
+Route::get('/about', AboutController::class);
+
+use App\Http\Controllers\ArticleController;
+Route::get('/articles/{id}', ArticleController::class);
